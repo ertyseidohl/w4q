@@ -166,7 +166,7 @@ export default {
     }
   },
   created () {
-    this.$http.get('http://api.aerisapi.com/forecasts/11101?client_id=BzLiAN309pgsOETvp5n2M&client_secret=P16ulhmNHXU8z82AuVPvLGRsgvYOOIjTCXYWtYcF').then(
+    this.$http.get('https://api.aerisapi.com/forecasts/11101?client_id=BzLiAN309pgsOETvp5n2M&client_secret=P16ulhmNHXU8z82AuVPvLGRsgvYOOIjTCXYWtYcF').then(
       res => {
         if (res.body.error) {
           this.error = res.body.error
