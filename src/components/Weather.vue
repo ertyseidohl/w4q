@@ -6,6 +6,13 @@
       <div class="day" v-for="day of weather.periods">
         {{day.timestamp | date}}
         <div class="temp_container">
+          <div class="icon">
+            <img
+              v-bind:src="'/static/Aeris_WxIcons_55x55/' + day.icon"
+              v-bind:alt="day.weather"
+            ><br>
+            {{day.weather}}
+          </div>
           <div
             class="temp temp_max"
             v-bind:style="{
@@ -176,6 +183,12 @@ export default {
 </script>
 
 <style scoped>
+  .icon {
+    position: absolute;
+    height: 6rem;
+    font-size: 0.7rem;
+    z-index: 2;
+  }
   .switch {
     background-color: #5589B7;
     border: 1px solid #5589B7;
