@@ -1,7 +1,7 @@
 <template>
   <div class="weather">
     <p v-if="error">{{error}}</p>
-    <button v-on:click="switchUnits">C/F</button>
+    <button class="switch" v-on:click="switchUnits">°{{otherUnit()}}</button>
     <div v-if="weather">
       <div class="day" v-for="day of weather.periods">
         {{day.timestamp | date}}
@@ -10,35 +10,59 @@
             class="temp temp_max"
             v-bind:style="{
               width: getWidthForTemp('maxTemp', day),
-              'border-color': '#192937'
+              'border-right-color': '#192937'
             }"
           >
-            <span class="temp_text">
-              {{getValueWithUnit('maxTemp', day)}}{{getDecoratorForUnit('temp')}}
-            </span>
           </div>
+          <div
+            class="temp_text"
+            v-bind:style="{
+              'left': getWidthForTemp('maxTemp', day)
+            }"
+          >
+            MAX<br>{{getValueWithUnit('maxTemp', day)}}{{getDecoratorForUnit('temp')}}
+          </div>
+
           <div
             class="temp temp_avg"
             v-bind:style="{
               width: getWidthForTemp('avgTemp', day),
-              'border-color': '#192937'
+              'border-right-color': '#192937'
             }"
           >
-            <span class="temp_text">
-              {{getValueWithUnit('avgTemp', day)}}{{getDecoratorForUnit('temp')}}
-            </span>
           </div>
           <div
+            class="temp_text"
+            v-bind:style="{
+              'left': getWidthForTemp('avgTemp', day)
+            }"
+          >
+            AVG<br>{{getValueWithUnit('avgTemp', day)}}{{getDecoratorForUnit('temp')}}
+          </div>
+
+           <div
             class="temp temp_min"
             v-bind:style="{
               width: getWidthForTemp('minTemp', day),
-              'border-color': '#192937'
+              'border-right-color': '#192937'
             }"
           >
-            <span class="temp_text">
-              {{getValueWithUnit('minTemp', day)}}{{getDecoratorForUnit('temp')}}
-            </span>
           </div>
+          <div
+            class="temp_text"
+            v-bind:style="{
+              'left': getWidthForTemp('minTemp', day)
+            }"
+          >
+            MIN<br>{{getValueWithUnit('minTemp', day)}}{{getDecoratorForUnit('temp')}}
+          </div>
+
+          <div
+            class="temp temp_min_cover"
+            v-bind:style="{
+              width: getWidthForTemp('minTemp', day)
+            }"
+          ></div>
           
         </div>
       </div>
@@ -67,7 +91,7 @@ const UNITS = {
   }
 }
 const MAX_WIDTH = 80
-const MIN_WIDTH = 20
+const MIN_WIDTH = 10
 export default {
   name: 'weather',
   data () {
@@ -91,6 +115,9 @@ export default {
   methods: {
     switchUnits () {
       this.useUnits = this.useUnits === 'C' ? 'F' : 'C'
+    },
+    otherUnit () {
+      return this.useUnits === 'C' ? 'F' : 'C'
     },
     getValueWithUnit (key, day) {
       let currUnit = 'temp'
@@ -149,6 +176,14 @@ export default {
 </script>
 
 <style scoped>
+  .switch {
+    background-color: #5589B7;
+    border: 1px solid #5589B7;
+    border-radius: 5px;
+    outline: none;
+    font-size: 1.5rem;
+  }
+
   .day {
     height: 6rem;
     margin: 1rem 0;
@@ -165,19 +200,16 @@ export default {
   }
 
   .temp_text {
-    float: right;
-    margin-right: 0.5rem;
+    position: absolute;
     font-size: 0.8rem;
-    margin-top: 1.7rem;
+    text-align: center;
+    margin-left: -0.7rem;
   }
-  
-  .temp_min {
+  .temp_min_cover {
     background-color: #E0F1FF;
+    top: calc(3rem - 2px);
+    height: calc(1.5rem + 4px);
+    border: none;
   }
-  .temp_avg .temp_text{
-    margin-top: -1rem;
-  }
-  .temp_max .temp_text{
-    margin-left: 10rem
-  }
+
 </style>
