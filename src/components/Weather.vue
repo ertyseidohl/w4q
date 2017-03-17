@@ -1,11 +1,11 @@
 <template>
   <div class="weather">
     <p v-if="error">{{error}}</p>
-    <h1>Weather for 11101 <button class="switch" v-on:click="switchUnits">°{{otherUnit()}}</button></h1>
+    <h1>Weather for 11101 <button class="switch" v-on:click="switchUnits">°{{useUnits}} / <span class="other">{{otherUnit()}}</span></button></h1>
     
     <div v-if="weather">
       <div class="day" v-for="day of weather.periods">
-        {{day.timestamp | date}}
+        <h3>{{day.timestamp | date}}</h3>
         <div class="temp_container">
           <div class="icon">
             <img
@@ -185,12 +185,22 @@ export default {
 </script>
 
 <style scoped>
+  h1 {
+    margin: 1rem;
+  }
+  .day {
+      box-shadow: 0 4px 4px -3px #5589B7;
+      padding: 0.1rem 1rem 1.5rem;
+      background-color: #E0F1FF;
+  }
   .icon {
     position: absolute;
-    height: 6rem;
-    font-size: 0.7rem;
+    height: 8rem;
+    font-size: 0.85rem;
+    top: 0.25rem;
     z-index: 2;
   }
+
   .switch {
     background-color: #5589B7;
     border: 1px solid #5589B7;
@@ -199,16 +209,25 @@ export default {
     font-size: 1.5rem;
   }
 
+  .other {
+    color: #3D6384;
+    font-size: 1rem;
+  }
+
+  .temp_container {
+    position: relative;
+  }
+
   .day {
-    height: 6rem;
+    height: 8rem;
     margin: 1rem 0;
     position: relative;
   }
 
   .temp {
     position: absolute;
-    top: 3rem;
     height: 1.5rem;
+    top: 2rem;
     left: 0;
     border-right: 2px solid;
     background-color: rgba(85, 137, 183, 0.33);
@@ -220,9 +239,11 @@ export default {
     text-align: center;
     margin-left: -0.7rem;
   }
+
   .temp_min_cover {
+    position: absolute;
     background-color: #E0F1FF;
-    top: calc(3rem - 2px);
+    top: calc(2rem - 2px);
     height: calc(1.5rem + 4px);
     border: none;
   }

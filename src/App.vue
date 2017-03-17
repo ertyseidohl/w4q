@@ -19,6 +19,7 @@ export default {
   body {
     font-family: 'leto', sans-serif;
     color: #192937;
-    background-color: #E0F1FF;
+    margin: 0;
+    background-color: rgba(126,155,181,0.2);
   }
 </style>
