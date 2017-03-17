@@ -1,7 +1,8 @@
 <template>
   <div class="weather">
     <p v-if="error">{{error}}</p>
-    <button class="switch" v-on:click="switchUnits">°{{otherUnit()}}</button>
+    <h1>Weather for 11101 <button class="switch" v-on:click="switchUnits">°{{otherUnit()}}</button></h1>
+    
     <div v-if="weather">
       <div class="day" v-for="day of weather.periods">
         {{day.timestamp | date}}
@@ -97,15 +98,15 @@ const UNITS = {
     pressure: 'IN'
   }
 }
-const MAX_WIDTH = 80
-const MIN_WIDTH = 10
+const MAX_WIDTH = 75
+const MIN_WIDTH = 20
 export default {
   name: 'weather',
   data () {
     return {
       error: '',
       weather: null,
-      useUnits: 'C',
+      useUnits: 'F',
       extremes: {
         maxTemp: {
           C: 0,
