@@ -8,6 +8,12 @@ Vue.config.productionTip = false
 
 Vue.use(vueResource)
 
+Vue.filter('date', (val) => {
+  const date = new Date(val * 1000)
+  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+  return `${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`
+})
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

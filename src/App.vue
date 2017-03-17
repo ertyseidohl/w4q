@@ -16,5 +16,9 @@ export default {
 </script>
 
 <style>
-
+  body {
+    font-family: 'leto', sans-serif;
+    color: #192937;
+    background-color: #E0F1FF;
+  }
 </style>
