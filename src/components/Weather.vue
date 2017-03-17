@@ -9,8 +9,8 @@
         <div class="temp_container">
           <div class="icon">
             <img
-              v-bind:srcset="'/static/Aeris_WxIcons_55x55/' + day.icon + ', /static/Aeris_WxIcons_110x110/' + day.icon + ' 2x'"
-              v-bind:src="'/static/Aeris_WxIcons_55x55/' + day.icon"
+              v-bind:srcset="'static/Aeris_WxIcons_55x55/' + day.icon + ', static/Aeris_WxIcons_110x110/' + day.icon + ' 2x'"
+              v-bind:src="'static/Aeris_WxIcons_55x55/' + day.icon"
               v-bind:alt="day.weather"
             ><br>
             {{day.weather}}
